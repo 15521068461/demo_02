@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/mian.css">
+  <title>Document2.0</title>
+</head>
+
+<body>
+
+
+  <div class="main">
+    <div class="title">
+      <p>社团管理系统</p>
+    </div>
+    <div class="username input">
+      <p>登录用户名:</p>
+
+      <input type="text" name="fname" id="fid" />
+    </div>
+    <div class="password input">
+
+      <p>登录密码:</p> <input type="text" id="j" />
+
+    </div>
+    <div class="enter">
+      <button type="button" onclick="isEmpty()" onmouseover="">登录</button>
+    </div>
+
+  </div>
+
+
+
+  </div>
+
+  <script>
+    // 判断是否为空
+    // 1.账号
+    // 2.密码
+    // 如果为空, 创建一段HTML结构插入 HTML 文档显示出来
+    // 点击确定需要关闭这段结构
+    function isEmpty() {
+      var x1 = getElement("input", "tagName");
+      var x  = x1[0].value;
+      console.log(x);
+      var y1 = $("#j");
+      var y = y1[0].value;
+      console.log(y);
+
+      if (isNull(x) || isNull(y)) {
+        setElementStyle(container, "display", "block");
+      } else {
+        document.write("登陆成功！");
+      }
+    }
+
+
+    // 创建一段HTML结构
+    var container = createElement('div');
+
+
+    function layer() {
+      document.body.appendChild(container);
+      setElementStyle(container, "display", "none");
+      setElementStyle(container, "margin", "0 auto");
+      setElementStyle(container, "marginTop", "50px");
+      setElementStyle(container, "paddingTop", "10px");
+      setElementStyle(container, "width", "450px");
+      setElementStyle(container, "height", "120px");
+      setElementStyle(container, "textAlign", "center");
+      setElementStyle(container, "borderRadius", "10px");
+      setElementStyle(container, "backgroundColor", "#3e9a42");
+
+      var p1 = createElement('p');
+      container.appendChild(p1);
+      setElementStyle(p1, "fontSize", "12px");
+      setElementStyle(p1, "marginTop", "10px");
+      setElementStyle(p1, "color", "#fff");
+      p1.innerHTML = "温馨提示";
+
+      var p2 = createElement('p');
+      container.appendChild(p2);
+      setElementStyle(p2, "fontSize", "12px");
+      setElementStyle(p2, "marginTop", "10px");
+      setElementStyle(p2, "color", "#fff");
+      p2.innerHTML = "用户必填!";
+
+      var button1 = createElement('button');
+      container.appendChild(button1);
+      button1.innerHTML = "知道了";
+      on(button1, "click", function () { setElementStyle(container, "display", "none"); });
+
+    }
+
+    layer();
+
+
+
+
+    // 1.通过使用者传入的参数, 选出对应元素
+    // 2.选出对应元素的 value
+    // 3.判断参数是否为空
+    // 4.根据传入参数, 改变对应元素的样式
+    // 5.根据传入参数, 创建对应元素
+    // 6.根据传入参数, 改变对应元素内容    ?????
+    // 7.了解所有可以定义事件的方法, 了解每一个的优势和缺点, 包装城成一个方法. 接近完美的
+    function getElement(value, type) {
+      var el;
+      switch (type) {
+        case "id":
+          el = document.getElementById(value);
+          break;
+        case "tagName":
+          el = document.getElementsByTagName(value);
+          break;
+        case "className":
+          el = document.getElementsByClassName(value);
+            break;
+      }
+      return el;
+    }
+    /**
+     * 通过传入参数, 返回对应类型的元素集合
+     */
+    function $(str) {
+      var arr = [];
+      var firstStr = str.slice(0, 1);
+      var otherStr = str.slice(1);
+
+      if(firstStr === '#') { // 通过 id 选取
+        arr.push(document.getElementById(otherStr));
+      } else if(firstStr === '.') { // 通过 className 选取
+        var classArr = document.getElementsByClassName(otherStr);
+        var len = classArr.length;
+        for(var i = 0; i < len; i ++) {
+          arr.push(classArr[i]);
+        }
+      } else { // 通过 tagName 选取
+        var tagArr = document.getElementsByTagName(str);
+        var len = tagArr.length;
+        for(var i = 0; i < len; i ++) {
+          arr.pushtagArr([i]);
+        }
+      }
+
+      return arr;
+    }
+    /**
+     * 通过传入参数, 返回对应类型的元素 value 集合
+     */
+    function val(str) {
+      var elArr = $(str);
+      var arr = [];
+      var len = elArr.length;
+
+      for(var i = 0; i< len; i ++) {
+        arr.push(elArr[i].value);
+      }
+
+      return arr;
+    }
+
+
+    function isNull(x) {
+      return x === '' ? true : false;
+    }
+    function setElementStyle(element, attribute, value) {
+      element.style[attribute] = value;
+
+    }
+    function createElement(el) {
+      return document.createElement(el);
+    }
+
+
+    
+    function on(elem, type, handle) {
+      if (elem.addEventListener) {
+        elem.addEventListener(type, handle, false);
+      } else if (elem.attachEvent) {
+        elem.attachEvent('on' + type, function () {
+          handle.call(elem);
+        })
+      } else {
+        elem['on' + type] = handle;
+      }
+    }
+
+
+
+   
+    
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/mian.css">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <div class="main">
+    <div class="title">
+      <p>社团管理系统</p>
+    </div>
+    <div class="username input">
+      <p>登录用户名:</p>
+
+      <input type="text" name="fname" id="fid" />
+    </div>
+    <div class="password input">
+
+      <p>登录密码:</p> <input type="text" id="j" />
+
+
+    </div>
+    <div class="enter">
+      <button onclick="isEmpty()" onmouseover="" >登录</button>
+    </div>
+
+  </div>
+
+
+
+  </div>
+   
+  <script>
+    // 判断是否为空
+    // 1.账号
+    // 2.密码
+    // 如果为空, 创建一段HTML结构插入 HTML 文档显示出来
+    // 点击确定需要关闭这段结构
+    function isEmpty() {
+      // var t = getValueFromInput("fname");
+      // console.log(t);
+      // console.log("你你你");
+      var x = document.getElementById("fid").value;
+      var y = document.getElementById("j").value;
+      if (x == "" || y == "") {
+        container.style.display = "block";
+      } else {
+        document.write("登陆成功！");
+      }
+    }
+
+    // 1.通过使用者传入的参数, 选出对应元素
+    // 2.选出对应元素的 value
+    // 3.判断参数是否为空
+    // 4.根据传入参数, 改变对应元素的样式
+    // 5.根据传入参数, 创建对应元素
+    // 6.根据传入参数, 改变对应元素内容    ?????
+    // 7.了解所有可以定义事件的方法, 了解每一个的优势和缺点, 包装城成一个方法. 接近完美的
+
+    // 创建一段HTML结构
+    var container = createElement('div');
+    function layer() { 
+      document.body.appendChild(container);
+      container.style.display = "none";
+      container.style.margin = "0 auto";
+      container.style.marginTop = "50px";
+      container.style.paddingTop = "10px";
+      container.style.width = "450px";
+      container.style.height = "120px";
+      container.style.textAlign = "center";
+      container.style.borderRadius = "10px";
+      container.style.backgroundColor = " #3e9a42";
+      var p1 = createElement('p');
+      container.appendChild(p1);
+      p1.style.fontSize = "12px";
+      p1.style.marginTop = "10px";
+      p1.style.color = "#fff";
+      p1.innerHTML = "温馨提示";
+      var p2 = createElement('p');
+      container.appendChild(p2);
+      p2.style.fontSize = "12px";
+      p2.style.marginTop = "10px";
+      p2.style.color = "#fff";
+      p2.innerHTML = "用户必填!";
+      var button1 = createElement('button');
+      container.appendChild(button1);
+      button1.innerHTML = "知道了";
+      button1.onclick = function () {
+        container.style.display = "none";
+      }
+    }
+         //创建元素方法
+         function createElement(el) {
+      return document.createElement(el);
+    }
+    layer();
+   
+    
+    function getElement(value){
+      try{
+        var element = document.getElementById(value)
+}catch(err){
+  console.log(err)
+  console.log(err.message);
+}
+try{
+      var element = document.getElementsByName(value)[0]
+    
+}catch(err){
+  console.log(err)
+  console.log(err.message);
+}
+try{
+      var element = document.getElementsByClassName(value)[0]
+    
+}catch(err){
+  console.log(err)
+  console.log(err.message);
+}
+        return element ;
+    }   
+    function getValueFromInput(value){
+      try{
+        var input = document.getElementById(value).value;
+}catch(err){
+  console.log(err)
+  console.log(err.message);
+}
+try{
+      var input = document.getElementsByName(value)[0].value;
+    
+}catch(err){
+  console.log(err)
+  console.log(err.message);
+}
+try{
+      var input = document.getElementsByClassName(value)[0].value
+    
+}catch(err){
+  console.log(err)
+  console.log(err.message);
+}
+        return input ;
+    }
+     function isNull(x){
+         if(x==""){
+           return true;
+         }else{
+           return false;
+         }
+     }
+    function setElementStyle(element,attribute,value){
+      element.style[attribute] = value;
+           
+     
+    }
+    function createElement(el) {
+      return document.createElement(el);
+    }
+    function on(elem, type, handle) {
+  
+    
+     if(elem.addEventListener){
+       elem.addEventListener(type, handle, false);
+     }else if(elem.attachEvent){
+       elem.attachEvent('on' + type, function(){
+         handle.call(elem);
+     })
+   }else{
+       elem['on' + type] = handle;
+   }
+    }
+ 
+
+
+
+  </script>
+
+</body>
+
+</html>
